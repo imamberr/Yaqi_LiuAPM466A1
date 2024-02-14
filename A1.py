@@ -35,16 +35,16 @@ def process_data(df, date_columns):
 
 
 def plot_curves(df, date_columns, proc_func, x_label, y_label, title, legend_prefix='Day'):
-    plt.figure(figsize=(10, 6))
+    fig, ax = plt.subplots(figsize=(10, 6))
     for date in date_columns:
         x, y = proc_func(df, date)
-        plt.plot(x, y, label=f"{date}")
-    plt.legend(loc='best')
-    plt.xlabel(x_label)
-    plt.ylabel(y_label)
-    plt.title(title)
-    plt.savefig(f'{title}.png')
-    plt.close()
+        ax.plot(x, y, label=f"{date}")
+    ax.legend(loc='best')
+    ax.set_xlabel(x_label)
+    ax.set_ylabel(y_label)
+    ax.set_title(title)
+    fig.savefig(f'{title}.png')
+    plt.close(fig)
 
 
 def rtn_raw(df, date):
